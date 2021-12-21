@@ -6,7 +6,7 @@
 
 Shelper::Shelper(int feed) {
   pinMode(3, OUTPUT);  // ###################################  //
-  pinMode(11, OUTPUT); //       Telling the Arduino wich       //
+  pinMode(11, OUTPUT); //       Tell the Arduino wich          //
   pinMode(12, OUTPUT); //           pins it should use         //
   pinMode(13, OUTPUT); // ###################################  //
   _feed = feed;
@@ -23,18 +23,18 @@ int Shelper::getpos(){ return _pos;}
 
 int Shelper::getstep(){ return _step;}
 
-int Shelper::getNextStepf(int step) {
+int Shelper::getNextStepf(int step) {   // Returns the next step when going forward
   return (step++) >= 4 ? 0 : (step++); 
 }
 
-int Shelper::getNextStepb(int step) {
+int Shelper::getNextStepb(int step) {   // Returns the next step when going backward
   return (step--) < 0 ? 3 : (step--); 
 }
 
 ///////////////////////////////////////////////////
 
 
-/////////////     MOTIONS METHODS     /////////////
+/////////////     MOTION  METHODS     /////////////
 void Shelper::doStep(int step) {
   switch (step) {
   case 0:                         //STEP NUMBER 1
@@ -84,7 +84,7 @@ void Shelper::movexstepbackward(int x) {
 
 
 /////////////       GOTO METHOD       /////////////
-void Shelper::gotopos(int pos) {
+void Shelper::gotopos(int pos) {    // Most complete method, allows you to move the stepper to a desired position
      if (pos > _pos) {
       movexstepforward(pos - _pos);
      } else if (pos <= _pos) {
